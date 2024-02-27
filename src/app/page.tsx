@@ -1,5 +1,6 @@
 import Head from "next/head";
-import ChessBoard from "@/components/Chessboard";
+import ChessBoard from "@/components/ChessBoard";
+import NavBar from "@/components/NavigationBar";
 
 export default function Home() {
     return (
@@ -9,7 +10,7 @@ export default function Home() {
             </Head>
 
             <main>
-                <ChessBoard />
+                <NavBar />
             </main>
         </div>
     );
