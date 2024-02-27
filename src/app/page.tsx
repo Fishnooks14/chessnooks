@@ -10,7 +10,7 @@ export default function Home() {
             </Head>
 
             <main>
-                <NavBar />
+                <ChessBoard />
             </main>
         </div>
     );
