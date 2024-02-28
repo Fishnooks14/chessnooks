@@ -12,9 +12,9 @@ export default function Home() {
             <main>
                 <div className="absolute">
                     <ChessBoard />
-                    <div className="absolute inset-0 bg-gray-300 bg-opacity-20">
+                    {/* <div className="absolute inset-0 bg-gray-300 bg-opacity-20">
                         <Welcome /> 
-                    </div>
+                    </div> */}
                 </div>
             </main>
         </div>
