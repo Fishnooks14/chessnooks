@@ -1,147 +1,177 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import * as BABYLON from "@babylonjs/core";
-import "@babylonjs/loaders/OBJ";
-import { int } from "babylonjs";
-import { PGNGame } from "@/utils/PGNParser";
+import { Castle, Move, PGNGame } from "@/utils/PGNParser";
+
+function cordsToVector(x: number, y: number): BABYLON.Vector3 {
+    return new BABYLON.Vector3(3.5 - y, 0.5, x - 3.5);
+}
 
 const ChessBoard: React.FC = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [scene, setScene] = useState<BABYLON.Scene | null>(null);
+    const canvasRef = useRef(null);
+    const gameRef = useRef(new PGNGame());
+    gameRef.current.init();
 
     useEffect(() => {
+        // create necessities to use babylon
         const engine = new BABYLON.Engine(canvasRef.current, true);
+        const scene = new BABYLON.Scene(engine);
 
-        const createScene = () => {
-            const scene = new BABYLON.Scene(engine);
-            // scene.clearColor = new BABYLON.Color4(0.8, 0.8, 0.8, 1);
+        // create a camera and light to view the models
+        const camera = new BABYLON.ArcRotateCamera(
+            "camera",
+            0,
+            Math.PI / 3.5,
+            10,
+            BABYLON.Vector3.Zero(),
+            scene
+        );
 
-            const boardMaterial = new BABYLON.StandardMaterial(
-                "boardMaterial",
-                scene
-            );
-            boardMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
+        const light = new BABYLON.HemisphericLight(
+            "light",
+            new BABYLON.Vector3(0, 1, 0),
+            scene
+        );
 
-            const whiteMaterial = new BABYLON.StandardMaterial(
-                "whiteMaterial",
-                scene
-            );
-            whiteMaterial.diffuseColor = new BABYLON.Color3(1, 1, 1);
+        // create materials for white, black, and the board
+        const boardMaterial = new BABYLON.StandardMaterial(
+            "boardMaterial",
+            scene
+        );
+        boardMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
 
-            const blackMaterial = new BABYLON.StandardMaterial(
-                "blackMaterial",
-                scene
-            );
-            blackMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+        const whiteMaterial = new BABYLON.StandardMaterial(
+            "whiteMaterial",
+            scene
+        );
+        whiteMaterial.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
-            const board = BABYLON.MeshBuilder.CreatePlane(
-                "board",
-                { size: 8 },
-                scene
-            );
-            board.material = boardMaterial;
-            board.position.y = 0.1;
-            board.rotation.x = Math.PI / 2;
+        const blackMaterial = new BABYLON.StandardMaterial(
+            "blackMaterial",
+            scene
+        );
+        blackMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
-            const pawnMesh = BABYLON.MeshBuilder.CreateBox(
-                "pawn",
-                { size: 0.5 },
-                scene
-            );
-            const whitePawn = pawnMesh.clone("piece-0-0");
-            whitePawn.material = whiteMaterial;
-            whitePawn.position = new BABYLON.Vector3(0.5, 0.5, 0.2);
+        // create board and pieces
+        const board = BABYLON.MeshBuilder.CreatePlane(
+            "board",
+            { size: 8 },
+            scene
+        );
+        board.material = boardMaterial;
+        board.position.y = 0.1;
+        board.rotation.x = Math.PI / 2;
 
-            const camera = new BABYLON.ArcRotateCamera(
-                "camera",
-                0,
-                Math.PI / 3.5,
-                10,
-                BABYLON.Vector3.Zero(),
-                scene
-            );
+        // for (let x = 0; x < 8; x++) {
+        //     for (let y = 0; y < 2; y++) {
+        //         const pawnMesh = BABYLON.MeshBuilder.CreateBox(
+        //             `piece-${x}-${y}`,
+        //             { size: 0.5 },
+        //             scene
+        //         );
+        //         pawnMesh.material = whiteMaterial;
+        //         pawnMesh.position = cordsToVector(x, y);
+        //     }
+        // }
 
-            const light = new BABYLON.HemisphericLight(
-                "light",
-                new BABYLON.Vector3(0, 1, 0),
-                scene
-            );
+        // for (let x = 0; x < 8; x++) {
+        //     for (let y = 6; y < 8; y++) {
+        //         const pawnMesh = BABYLON.MeshBuilder.CreateBox(
+        //             `piece-${x}-${y}`,
+        //             { size: 0.5 },
+        //             scene
+        //         );
+        //         pawnMesh.material = blackMaterial;
+        //         pawnMesh.position = cordsToVector(x, y);
+        //     }
+        // }
 
-            scene.registerBeforeRender(() => {
-                camera.alpha += 0.005; // Adjust the speed as desired
-            });
+        const pawnMesh = BABYLON.MeshBuilder.CreateBox(
+            `piece-4-1`,
+            { size: 0.5 },
+            scene
+        );
+        pawnMesh.material = whiteMaterial;
+        pawnMesh.position = cordsToVector(4, 1);
 
-            engine.runRenderLoop(() => {
-                scene.render();
-            });
+        const movePiece = (
+            fromX: number,
+            fromY: number,
+            toX: number,
+            toY: number
+        ) => {
+            if (scene) {
+                console.log(`piece-${fromX}-${fromY}` === `piece-4-1`);
+                const piece = scene.getMeshByName(`piece-${fromX}-${fromY}`);
+                console.log(piece);
+                if (piece) {
+                    console.log("bozo spotted");
+                    const currentPos = piece.position;
+                    const targetPos = cordsToVector(toX, toY);
+                    const animation = new BABYLON.Animation(
+                        "moveAnimation",
+                        "position",
+                        30,
+                        BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
+                        BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
+                    );
 
-            setScene(scene);
+                    const keyFrames = [];
+                    keyFrames.push({ frame: 0, value: currentPos });
+                    keyFrames.push({ frame: 30, value: targetPos });
+
+                    animation.setKeys(keyFrames);
+                    piece.animations.push(animation);
+                    scene.beginAnimation(piece, 0, 90, false);
+                    piece.name = `piece-${toX}-${toY}`;
+                } else {
+                    console.log("no piece");
+                }
+            } else {
+                console.log("no scene");
+            }
         };
 
-        createScene();
+        // Create loop to play moves
+        setInterval(() => {
+            for (const mesh of scene.meshes) {
+                if (mesh.name) {
+                    console.log(mesh.name);
+                } else {
+                    console.log("no name");
+                }
+            }
+            const nextMove = gameRef.current.nextMove();
+            console.log(nextMove);
+            switch (nextMove) {
+                case null:
+                    console.log("null");
+                    break;
+                case nextMove as Move:
+                    console.log("making a move");
+                    movePiece(
+                        nextMove.initialPos.x,
+                        nextMove.initialPos.y,
+                        nextMove.finalPos.y,
+                        nextMove.finalPos.y
+                    );
+                    break;
+                case nextMove as Castle:
+                    console.log("castle");
+                    break;
+            }
+        }, 3000);
 
-        return () => {
-            engine.dispose();
-        };
+        engine.runRenderLoop(() => {
+            scene.render();
+        });
+
+        return () => engine.dispose();
     }, []);
 
-    const movePiece = (fromX: int, fromY: int, toX: int, toY: int) => {
-        if (scene) {
-            const piece = scene.getMeshByName(`piece-${fromX}-${fromY}`);
-            if (piece) {
-                const currentPos = piece.position;
-                const targetPos = new BABYLON.Vector3(
-                    toX * 1 + 0.5,
-                    0.5,
-                    fromY * -1 + 0.5
-                );
-                const animation = new BABYLON.Animation(
-                    "moveAnimation",
-                    "position",
-                    30,
-                    BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
-                    BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
-                );
-
-                const keyFrames = [];
-                keyFrames.push({ frame: 0, value: currentPos });
-                keyFrames.push({ frame: 90, value: targetPos });
-
-                animation.setKeys(keyFrames);
-                piece.animations.push(animation);
-                scene.beginAnimation(piece, 0, 90, false);
-            } else {
-                console.log("no piece");
-            }
-        } else {
-            console.log("no scene");
-        }
-    };
-
-    const game = new PGNGame();
-    let move = game.nextMove();
-    while (move != null) {
-        console.log(move);
-        move = game.nextMove();
-    }
-
     return (
-        <>
-            <canvas
-                ref={canvasRef}
-                style={{ width: "100vw", height: "100vh" }}
-            />
-            <button
-                onClick={() => {
-                    movePiece(0, 0, 10, 10);
-                    console.log("hi");
-                }}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-                Do Thing
-            </button>
-        </>
+        <canvas ref={canvasRef} style={{ width: "100vw", height: "100vh" }} />
     );
 };
 

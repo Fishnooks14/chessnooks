@@ -27,7 +27,8 @@ export class PGNGame {
         this.gameState = new Chess(DEFAULT_POSITION);
 
         const gameIndex = Math.floor(Math.random() * gameList.length);
-        this.file = gameList[gameIndex];
+        this.file = "/games/" + gameList[gameIndex];
+        console.log("file: " + this.file);
         this.moveData = [];
     }
 
@@ -37,6 +38,15 @@ export class PGNGame {
     //     this.file = file;
     //     this.moveData = this.parseFileData(file);
     // }
+
+    public newGame() {
+        this.gameState = new Chess(DEFAULT_POSITION);
+
+        const gameIndex = Math.floor(Math.random() * gameList.length);
+        this.file = "/games/" + gameList[gameIndex];
+        console.log("file: " + this.file);
+        this.moveData = [];
+    }
 
     async init() {
         try {
@@ -105,7 +115,12 @@ export class PGNGame {
     // Converts from algebraic notation to coordinates
     private stringToCoord(square: string): BoardCoord {
         const file = "abcdefgh".indexOf(square[0]);
-        const rank = 8 - parseInt(square[1]);
+        const rank = parseInt(square[1]) - 1;
         return { x: file, y: rank };
     }
+
+    // public static isMove(value: unknown): value is Move {
+    //     return typeof value === "object" &&
+    //         value !== null && typeof (value as Move).finalPos === ""
+    // }
 }

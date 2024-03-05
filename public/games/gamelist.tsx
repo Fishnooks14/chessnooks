@@ -1,1 +1,1 @@
-export const gameList = ["testdata.pgn"];
+export const gameList = ["data.pgn"];
