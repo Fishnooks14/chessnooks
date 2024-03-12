@@ -33,11 +33,11 @@ const About = () => {
                             deserunt mollit anim id est laborum.
                         </p>
                     </div>
-                    {/* <Image
+                    <img
                         className="rounded-lg shadow-md mx-auto md:mx-0"
                         src="/assets/images/logo.jpg"
                         alt="Company Logo"
-                    /> */}
+                    />
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ interface Section {
 const sections: Section[] = [
     {
         title: "Introduction",
-        content: `Add intro para here`,
+        content: `<br />Add intro para here`,
     },
     {
         title: "Pieces",
@@ -19,12 +19,11 @@ const sections: Section[] = [
         subsections: [
             {
                 title: "Pawn",
-                content: `Pawn info`,
+                content: `<p>Pawn Info</p>`,
             },
             {
-                title: "How does it work?",
-                content: `<h2>How does it work?</h2>
-                    <p>Click on a section or subsection in the sidebar to jump to that section.</p>`,
+                title: "Rook",
+                content: `<p>Rook info</p>`,
             },
         ],
     },
@@ -64,9 +63,15 @@ const Rules = () => {
             }`}
         >
             {/* Use conditional rendering for heading tag */}
-            {level === 1 && <h1>{section.title}</h1>}
-            {level === 2 && <h2>{section.title}</h2>}
-            {level === 3 && <h3>{section.title}</h3>}
+            {level === 1 && (
+                <h1 className="font-bold text-2xl">{section.title}</h1>
+            )}
+            {level === 2 && (
+                <h2 className="font-semibold text-xl">{section.title}</h2>
+            )}
+            {level === 3 && (
+                <h3 className="font-semibold text-lg">{section.title}</h3>
+            )}
             <div dangerouslySetInnerHTML={{ __html: section.content }} />
             {section.subsections?.map((subsection) =>
                 renderSection(subsection, level + 1)
