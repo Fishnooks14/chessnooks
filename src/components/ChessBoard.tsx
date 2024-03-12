@@ -73,7 +73,7 @@ const ChessBoard: React.FC = () => {
             (meshes) => {
                 meshes[0].rotation.y = Math.PI / 2;
                 meshes[0].rotation.x = -Math.PI / 2;
-                meshes[0].scaling = new BABYLON.Vector3(0.217, 0.217, 0.217);
+                meshes[0].scaling = new BABYLON.Vector3(-0.217, 0.217, 0.217);
             }
         );
 
