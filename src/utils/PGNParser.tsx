@@ -27,8 +27,7 @@ export class PGNGame {
         this.gameState = new Chess(DEFAULT_POSITION);
 
         const gameIndex = Math.floor(Math.random() * gameList.length);
-        // this.file = "/games/" + gameList[gameIndex];
-        this.file = "/games/" + "game_4.pgn";
+        this.file = "/games/" + gameList[gameIndex];
         console.log("file: " + this.file);
         this.moveData = [];
     }

@@ -36,6 +36,13 @@ const ChessBoard: React.FC = () => {
             new BABYLON.Vector3(0, 1, 0),
             scene
         );
+        light.intensity = 0.6;
+
+        const light2 = new BABYLON.HemisphericLight(
+            "light",
+            new BABYLON.Vector3(0, 1, 1),
+            scene
+        );
 
         // create materials for white, black, and the board
         const boardMaterial = new BABYLON.StandardMaterial(
@@ -48,23 +55,19 @@ const ChessBoard: React.FC = () => {
             "whiteMaterial",
             scene
         );
-        whiteMaterial.diffuseColor = new BABYLON.Color3(1, 1, 1);
+        whiteMaterial.diffuseColor = new BABYLON.Color3(0.7, 0.7, 0.7);
+        whiteMaterial.emissiveColor = new BABYLON.Color3(0.3, 0.3, 0.3);
+
+        whiteMaterial.backFaceCulling = false;
 
         const blackMaterial = new BABYLON.StandardMaterial(
             "blackMaterial",
             scene
         );
         blackMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+        blackMaterial.backFaceCulling = false;
 
         // create board and pieces
-        // const board = BABYLON.MeshBuilder.CreatePlane(
-        //     "board",
-        //     { size: 8 },
-        //     scene
-        // );
-        // board.material = boardMaterial;
-        // board.position.y = 0.1;
-        // board.rotation.x = Math.PI / 2;
         BABYLON.SceneLoader.ImportMesh(
             "",
             "assets/models/board/",
@@ -79,27 +82,37 @@ const ChessBoard: React.FC = () => {
 
         for (let x = 0; x < 8; x++) {
             for (let y = 0; y < 2; y++) {
-                const pawnMesh = BABYLON.MeshBuilder.CreateBox(
-                    `piece-${x}-${y}`,
-                    { size: 0.5 },
-                    scene
+                BABYLON.SceneLoader.ImportMesh(
+                    "",
+                    "assets/models/pawn/",
+                    "pawn.obj",
+                    scene,
+                    (meshes) => {
+                        meshes[0].material = whiteMaterial;
+                        meshes[0].position.y = 1;
+                        meshes[0].material = whiteMaterial;
+                        meshes[0].position = cordsToVector(x, y);
+                        meshPos.current.set(x + "-" + y, meshes[0]);
+                    }
                 );
-                pawnMesh.material = whiteMaterial;
-                pawnMesh.position = cordsToVector(x, y);
-                meshPos.current.set(x + "-" + y, pawnMesh);
             }
         }
 
         for (let x = 0; x < 8; x++) {
             for (let y = 6; y < 8; y++) {
-                const pawnMesh = BABYLON.MeshBuilder.CreateBox(
-                    `piece-${x}-${y}`,
-                    { size: 0.5 },
-                    scene
+                BABYLON.SceneLoader.ImportMesh(
+                    "",
+                    "assets/models/pawn/",
+                    "pawn.obj",
+                    scene,
+                    (meshes) => {
+                        meshes[0].material = blackMaterial;
+                        meshes[0].position.y = 1;
+                        meshes[0].material = blackMaterial;
+                        meshes[0].position = cordsToVector(x, y);
+                        meshPos.current.set(x + "-" + y, meshes[0]);
+                    }
                 );
-                pawnMesh.material = blackMaterial;
-                pawnMesh.position = cordsToVector(x, y);
-                meshPos.current.set(x + "-" + y, pawnMesh);
             }
         }
 
