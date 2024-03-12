@@ -22,6 +22,13 @@ const NavBar = () => {
                             </a>
 
                             <a
+                                href="/rules"
+                                className="text-white hover:bg-white hover:text-black rounded-lg p-2"
+                            >
+                                Rules
+                            </a>
+
+                            <a
                                 href="/about"
                                 className="text-white hover:bg-white hover:text-black rounded-lg p-2"
                             >

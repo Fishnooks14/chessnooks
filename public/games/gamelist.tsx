@@ -1,1 +1,18 @@
-export const gameList = ["data.pgn"];
+export const gameList = [
+    "game_0.pgn",
+    "game_1.pgn",
+    "game_2.pgn",
+    "game_3.pgn",
+    "game_4.pgn",
+    "game_5.pgn",
+    "game_6.pgn",
+    "game_7.pgn",
+    "game_8.pgn",
+    "game_9.pgn",
+    "game_10.pgn",
+    "game_11.pgn",
+    "game_12.pgn",
+    "game_13.pgn",
+    "game_14.pgn",
+    "game_15.pgn",
+];

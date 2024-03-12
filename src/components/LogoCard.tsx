@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 
-const Welcome = () => {
+const LogoCard = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
@@ -31,4 +31,4 @@ const Welcome = () => {
     );
 };
 
-export default Welcome;
+export default LogoCard;
