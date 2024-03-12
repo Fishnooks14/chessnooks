@@ -9,6 +9,19 @@ function cordsToVector(x: number, y: number): BABYLON.Vector3 {
     return new BABYLON.Vector3(3.5 - y, 0.5, x - 3.5);
 }
 
+function addOrAppend(
+    map: Map<string, BABYLON.AbstractMesh[]>,
+    key: string,
+    value: BABYLON.AbstractMesh
+) {
+    const existingValues = map.get(key);
+    if (!existingValues) {
+        map.set(key, [value]);
+    } else {
+        existingValues.push(value);
+    }
+}
+
 const ChessBoard: React.FC = () => {
     const canvasRef = useRef(null);
     const gameRef = useRef(new PGNGame());
@@ -81,39 +94,153 @@ const ChessBoard: React.FC = () => {
         );
 
         for (let x = 0; x < 8; x++) {
-            for (let y = 0; y < 2; y++) {
-                BABYLON.SceneLoader.ImportMesh(
-                    "",
-                    "assets/models/pawn/",
-                    "pawn.obj",
-                    scene,
-                    (meshes) => {
-                        meshes[0].material = whiteMaterial;
-                        meshes[0].position.y = 1;
-                        meshes[0].material = whiteMaterial;
-                        meshes[0].position = cordsToVector(x, y);
-                        meshPos.current.set(x + "-" + y, meshes[0]);
-                    }
-                );
-            }
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/pawn/",
+                "pawn.obj",
+                scene,
+                (meshes) => {
+                    meshes[0].material = whiteMaterial;
+                    meshes[0].position.y = 1;
+                    meshes[0].position = cordsToVector(x, 1);
+                    meshPos.current.set(x + "-" + 1, [meshes[0]]);
+                }
+            );
         }
 
         for (let x = 0; x < 8; x++) {
-            for (let y = 6; y < 8; y++) {
-                BABYLON.SceneLoader.ImportMesh(
-                    "",
-                    "assets/models/pawn/",
-                    "pawn.obj",
-                    scene,
-                    (meshes) => {
-                        meshes[0].material = blackMaterial;
-                        meshes[0].position.y = 1;
-                        meshes[0].material = blackMaterial;
-                        meshes[0].position = cordsToVector(x, y);
-                        meshPos.current.set(x + "-" + y, meshes[0]);
-                    }
-                );
-            }
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/pawn/",
+                "pawn.obj",
+                scene,
+                (meshes) => {
+                    meshes[0].material = blackMaterial;
+                    meshes[0].position.y = 1;
+                    meshes[0].position = cordsToVector(x, 6);
+                    meshPos.current.set(x + "-" + 6, [meshes[0]]);
+                }
+            );
+        }
+
+        for (let i = 0; i < 2; i++) {
+            let row = i === 1 ? 0 : 7;
+            let material = i === 1 ? whiteMaterial : blackMaterial;
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/rook/",
+                "rook.obj",
+                scene,
+                (meshes) => {
+                    meshes[0].material = material;
+                    meshes[0].position.y = 1;
+                    meshes[0].position = cordsToVector(0, row);
+                    meshPos.current.set(0 + "-" + row, [meshes[0]]);
+                }
+            );
+
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/knight/",
+                "knight.obj",
+                scene,
+                (meshes) => {
+                    meshes.forEach((mesh) => {
+                        mesh.material = material;
+                        mesh.position.y = 1;
+                        mesh.position = cordsToVector(1, row);
+                        addOrAppend(meshPos.current, 1 + "-" + row, mesh);
+                    });
+                }
+            );
+
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/bishop/",
+                "bishop.obj",
+                scene,
+                (meshes) => {
+                    meshes.forEach((mesh) => {
+                        mesh.material = material;
+                        mesh.position.y = 1;
+                        mesh.position = cordsToVector(2, row);
+                        addOrAppend(meshPos.current, 2 + "-" + row, mesh);
+                    });
+                }
+            );
+
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/queen/",
+                "queen.obj",
+                scene,
+                (meshes) => {
+                    meshes.forEach((mesh) => {
+                        mesh.material = material;
+                        mesh.position.y = 1;
+                        mesh.position = cordsToVector(3, row);
+                        addOrAppend(meshPos.current, 3 + "-" + row, mesh);
+                    });
+                }
+            );
+
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/king/",
+                "king.obj",
+                scene,
+                (meshes) => {
+                    meshes.forEach((mesh) => {
+                        mesh.material = material;
+                        mesh.position.y = 1;
+                        mesh.position = cordsToVector(4, row);
+                        addOrAppend(meshPos.current, 4 + "-" + row, mesh);
+                    });
+                }
+            );
+
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/bishop/",
+                "bishop.obj",
+                scene,
+                (meshes) => {
+                    meshes.forEach((mesh) => {
+                        mesh.material = material;
+                        mesh.position.y = 1;
+                        mesh.position = cordsToVector(5, row);
+                        addOrAppend(meshPos.current, 5 + "-" + row, mesh);
+                    });
+                }
+            );
+
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/knight/",
+                "knight.obj",
+                scene,
+                (meshes) => {
+                    meshes.forEach((mesh) => {
+                        mesh.material = material;
+                        mesh.position.y = 1;
+                        mesh.position = cordsToVector(6, row);
+                        addOrAppend(meshPos.current, 6 + "-" + row, mesh);
+                    });
+                }
+            );
+
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "assets/models/rook/",
+                "rook.obj",
+                scene,
+                (meshes) => {
+                    meshes[0].material = material;
+                    meshes[0].position.y = 1;
+                    meshes[0].position = cordsToVector(7, row);
+                    meshPos.current.set(7 + "-" + 0, [meshes[0]]);
+                }
+            );
         }
 
         const movePiece = (
@@ -123,8 +250,8 @@ const ChessBoard: React.FC = () => {
             toY: number
         ) => {
             if (scene) {
-                const piece = meshPos.current.get(fromX + "-" + fromY);
-                if (piece) {
+                const pieces = meshPos.current.get(fromX + "-" + fromY);
+                pieces.forEach((piece: BABYLON.AbstractMesh) => {
                     const currentPos = piece.position;
                     const targetPos = cordsToVector(toX, toY);
                     console.log("dest: " + targetPos);
@@ -144,16 +271,16 @@ const ChessBoard: React.FC = () => {
                     piece.animations.push(animation);
                     scene.beginAnimation(piece, 0, 90, false);
                     meshPos.current.delete(fromX + "-" + fromY);
-                    meshPos.current.set(toX + "-" + toY, piece);
-                }
+                    addOrAppend(meshPos.current, toX + "-" + toY, piece);
+                });
             }
         };
 
         const deletePiece = (x: number, y: number) => {
             if (scene) {
                 console.log("thing happened");
-                const piece = meshPos.current.get(x + "-" + y);
-                if (piece) {
+                const pieces = meshPos.current.get(x + "-" + y);
+                pieces.forEach((piece: BABYLON.AbstractMesh) => {
                     const currentPos = piece.position;
                     const targetPos = new BABYLON.Vector3(
                         piece.position.x,
@@ -177,7 +304,7 @@ const ChessBoard: React.FC = () => {
                     scene.beginAnimation(piece, 0, 90, false);
                     meshPos.current.delete(x + "-" + y);
                     piece.dispose();
-                }
+                });
             }
         };
 
