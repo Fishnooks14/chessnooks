@@ -43,7 +43,7 @@ const About = () => {
           <img
             className="rounded-lg shadow-md mx-auto md:mx-0"
             src="/assets/images/studying.png"
-            alt="Company Logo"
+            alt="Man reading a book, pondering"
           />
         </div>
       </div>
