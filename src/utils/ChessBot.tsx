@@ -78,23 +78,25 @@ export class ChessBot {
     let whiteEvaluation = 0;
     let blackEvaluation = 0;
 
-    for (let square in game.board()) {
-      const piece = game.get(square as Square);
+    let board = game.board();
 
-      if (piece) {
-        const pieceType = piece.type;
-        const pieceColor = piece.color;
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        const square = board[i][j];
+        if (square === null) {
+          continue;
+        }
+
+        const pieceType = square.type;
+        const pieceColor = square.color;
 
         const valueTable = this.psts.get(pieceType);
         if (valueTable == undefined) {
           return -1;
         }
 
-        let rank = this.algebraicToRank(square);
-        if (pieceColor === "b") {
-          rank = 7 - rank;
-        }
-        const file = this.algebraicToFile(square);
+        let rank = pieceColor === "w" ? i : 7 - i;
+        const file = j;
         const index = rank * 8 + file;
 
         const nativePieceValue = this.pieceValues.get(pieceType);
