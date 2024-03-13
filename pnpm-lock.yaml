@@ -11,14 +11,20 @@ dependencies:
   '@babylonjs/loaders':
     specifier: ^6.44.0
     version: 6.44.0(@babylonjs/core@6.44.0)(babylonjs-gltf2interface@6.44.0)
+  '@types/babylonjs':
+    specifier: ^2.4.1
+    version: 2.4.1
+  '@types/chess.js':
+    specifier: ^0.13.7
+    version: 0.13.7
   '@types/react-scroll':
     specifier: ^1.8.10
     version: 1.8.10
   babylonjs:
-    specifier: ^6.44.0
-    version: 6.44.0
+    specifier: ^6.46.1
+    version: 6.46.1
   chess.js:
-    specifier: 1.0.0-beta.8
+    specifier: ^1.0.0-beta.8
     version: 1.0.0-beta.8
   framer-motion:
     specifier: ^11.0.6
@@ -343,6 +349,17 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@types/babylonjs@2.4.1:
+    resolution: {integrity: sha512-vt6db2PxisxsnLvL5holHLV9vMJzELAhFq54syX/tKncTmjeraQSR1W20j9/KYLEpAFU18u76rK8utb8JlUrtQ==}
+    deprecated: This is a stub types definition for BabylonJS (http://www.babylonjs.com/). BabylonJS provides its own type definitions, so you don't need @types/babylonjs installed!
+    dependencies:
+      babylonjs: 6.46.1
+    dev: false
+
+  /@types/chess.js@0.13.7:
+    resolution: {integrity: sha512-o9TeeBdFXelFJXOD9+6sT6bbpBvWG0ZbpOnlIyUNXBjewh7xoFS0+BifGc71T45D5E952io3i8dDsaN6hnLaxw==}
+    dev: false
+
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
@@ -655,8 +672,8 @@ packages:
     resolution: {integrity: sha512-9sHU8pa8p6Virh/I4bNGCP1f4BNWEdtD53fkcqWfLaFxT2/bRDPFCvRHxwyM6jxlsMUJQTgEzWaLBQqbFGFQ1Q==}
     dev: false
 
-  /babylonjs@6.44.0:
-    resolution: {integrity: sha512-d7Uq5bCW+CJQ6+hWrIRbKssqZMAVh337uh+1Dcga/Fc5aOXdMja+BlszfJ8KItGyqz0qgtwZ0tQdnR5miS/Ykw==}
+  /babylonjs@6.46.1:
+    resolution: {integrity: sha512-UiXeoIP+xGdq0oBgQorcY2eOIGlCru8peTKJ3Z8+tLR6dp+icDxg7W+XEJqvT9eSd0f+IW1fTVJwvHQIr2IUQA==}
     requiresBuild: true
     dev: false
 
