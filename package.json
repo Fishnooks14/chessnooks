@@ -11,9 +11,11 @@
   "dependencies": {
     "@babylonjs/core": "^6.44.0",
     "@babylonjs/loaders": "^6.44.0",
+    "@types/babylonjs": "^2.4.1",
+    "@types/chess.js": "^0.13.7",
     "@types/react-scroll": "^1.8.10",
-    "babylonjs": "^6.44.0",
-    "chess.js": "1.0.0-beta.8",
+    "babylonjs": "^6.46.1",
+    "chess.js": "^1.0.0-beta.8",
     "framer-motion": "^11.0.6",
     "next": "14.1.0",
     "react": "^18",
