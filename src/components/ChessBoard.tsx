@@ -25,9 +25,9 @@ function addOrAppend(
 const ChessBoard: React.FC = () => {
     const canvasRef = useRef(null);
     const gameRef = useRef(new PGNGame());
-    const meshPos = useRef(new Map());
+    const meshPos: React.MutableRefObject<Map<string, BABYLON.AbstractMesh[]>> =
+        useRef(new Map());
     gameRef.current.init();
-    console.log(Math.random());
 
     useEffect(() => {
         // create necessities to use babylon
@@ -264,10 +264,12 @@ const ChessBoard: React.FC = () => {
         ) => {
             if (scene) {
                 const pieces = meshPos.current.get(fromX + "-" + fromY);
+                if (!pieces) {
+                    return;
+                }
                 pieces.forEach((piece: BABYLON.AbstractMesh) => {
                     const currentPos = piece.position;
                     const targetPos = cordsToVector(toX, toY);
-                    console.log("dest: " + targetPos);
                     const animation = new BABYLON.Animation(
                         "moveAnimation",
                         "position",
@@ -291,8 +293,10 @@ const ChessBoard: React.FC = () => {
 
         const deletePiece = (x: number, y: number) => {
             if (scene) {
-                console.log("thing happened");
                 const pieces = meshPos.current.get(x + "-" + y);
+                if (!pieces) {
+                    return;
+                }
                 pieces.forEach((piece: BABYLON.AbstractMesh) => {
                     const currentPos = piece.position;
                     const targetPos = new BABYLON.Vector3(
@@ -324,11 +328,17 @@ const ChessBoard: React.FC = () => {
         // Create loop to play moves
         setInterval(() => {
             const nextMove = gameRef.current.nextMove();
-            console.log(nextMove);
             if (nextMove == null) {
-                console.log("null move");
+                meshPos.current.forEach((meshes, meshName) => {
+                    meshes.forEach((mesh) => {
+                        mesh.dispose();
+                    });
+                });
+                meshPos.current.clear();
+                setupBoard();
+                gameRef.current.newGame();
+                gameRef.current.init();
             } else if ("initialPos" in nextMove) {
-                console.log("regular move");
                 if (nextMove.capture) {
                     deletePiece(nextMove.capture.x, nextMove.capture.y);
                 }

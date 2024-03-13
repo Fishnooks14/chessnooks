@@ -35,6 +35,13 @@ const NavBar = () => {
                             </a>
 
                             <a
+                                href="/strategy"
+                                className="text-render_gray hover:bg-dcyan hover:text-black rounded-lg p-2"
+                            >
+                                Openings and Strategies
+                            </a>
+
+                            <a
                                 href="/local-play"
                                 className="text-render_gray hover:bg-dcyan hover:text-black rounded-lg p-2"
                             >

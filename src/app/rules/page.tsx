@@ -29,27 +29,38 @@ const sections: Section[] = [
                 <p><br /> Pawns are by far the weakest piece in terms of movement, typically only being able to advance a single square straight forward each turn. However, this is not always true. If a pawn has not yet moved in a given game, it is given the option to instead move two square directly forward. Now, you may notice that these rules do not allow a pawn to move backwards in any way, meaning you hae to be cautious when pushing pawns down the board.</p>
                 <p><br /> Pawns, unlike other pieces, capture differently from how they move. A pawn can capture an enemy piece located on either of the two squares diagonally in front of the pawn.<\p>
                 <p><br /> As you might be able to tell, judging by these rules laid out, a pawn may seem completely useless once it reaches the end of the board, as there would be no more spaces for it to move to or capture on. This is where a special mechanic exclusive to pawns comes into play, promotion. When a pawn reaches the end of the board, it is promoted to a piece of the player's choice. This interaction is most commonly seen in endgames, after most other pieces have already been removed from play.</p>
-                <p><br /> @@@@@@@ EN PASSANT THING HERE</p>`,
+                <p><br /> Pawns also have another unusual feature called an “En passant.” It is in the scenario when an opponent advances their pawn two spaces and your pawn is directly adjacent. In this case, you can capture the adjacent pawn diagonally even if there is no piece there. This rule was introduced fairly late in order to make the game faster and <i>more entertaining.</i> </p>`,
             },
             {
                 title: "Rook",
-                content: `<p>Rook info</p>`,
+                content: `<p>There are two rooks on a chess board and are constrained to moving only vertically (up/down) or horizontally (left/right). Like a bishop, it can move as far as possible given that there is not another piece in the way.</p>
+                <p><br />The rook is significant in another way as well because along with the king, it can perform the move known as “castling.” This is when, given that the other pieces are out of the way and neither the rook nor king has moved yet, the king and rook can shift in one move. </p>
+                <p><br />A “long” castle, or a castle that takes place on the Queen side, shifts the king two spaces to the left and the rook three spaces to the right.</p>
+                <p><br />A “short” castle, or a castle on the King side, shifts the king two spaces to the right and the rook two spaces to the left</p>
+                `,
             },
             {
                 title: "Bishop",
-                content: `<p>Bishop info</p>`,
+                content: `<p>Bishops are the pieces in chess that can only move diagonally. You will notice that the bishop that begins on the light squares will always remain there and the same is true for the bishop on the dark square. Bishops are not constricted to only moving a certain number of spaces. In fact, they can move as far as they can without being obstructed by another chess piece or the end of the board.</p>`,
             },
             {
                 title: "Queen",
-                content: `<p>Queen info</p>`,
+                content: `<p>The queen is by far the most powerful piece in chess, being considered nine material points commonly. It has the powers of the rook combined with the powers of the bishop meaning that it can move horizontally, vertically, and diagonally for as far as possible. </p>`,
             },
             {
                 title: "Knight",
-                content: `<p>Knight info</p>`,
+                content: `<p>The knight is the chess piece that a beginner might have the most trouble with initially. This is because they move pretty irregularly compared to the other pieces. A good way to describe this is that the knight makes an “L” shape because it moves as follows: </p>
+
+                <p><br />Two spaces up or down and one space left or right.</p>
+                <p>Or</p>
+                <p>Two spaces left or right and one space up or down</p>
+                `,
             },
             {
                 title: "King",
-                content: `<p>King info</p>`,
+                content: `<p><br />The king is the most important piece in chess because placing it in checkmate wins you the game but it is at the same time the most immobile piece. It can only move one square in any direction</p>
+                <p><br />Also, the king along with the rook can perform a “castle.” (see rook section for more information)</p>
+                `,
             },
         ],
     },

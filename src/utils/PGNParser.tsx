@@ -28,7 +28,6 @@ export class PGNGame {
 
         const gameIndex = Math.floor(Math.random() * gameList.length);
         this.file = "/games/" + gameList[gameIndex];
-        console.log("file: " + this.file);
         this.moveData = [];
     }
 
@@ -44,7 +43,6 @@ export class PGNGame {
 
         const gameIndex = Math.floor(Math.random() * gameList.length);
         this.file = "/games/" + gameList[gameIndex];
-        console.log("file: " + this.file);
         this.moveData = [];
     }
 
