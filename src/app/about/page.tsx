@@ -32,7 +32,7 @@ const About = () => {
           </div>
           <img
             className="rounded-lg shadow-md mx-auto md:mx-0"
-            src="/assets/images/logo.jpg"
+            src="/assets/images/goesHard.png"
             alt="Company Logo"
           />
         </div>

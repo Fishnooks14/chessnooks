@@ -12,6 +12,21 @@ const ChessComponent: React.FC = () => {
   const [showPromo, setShowPromo] = useState<boolean>(false);
   const [lastMove, setLastMove] = useState<string | null>(null);
 
+  const [gameActive, setGameActive] = useState<boolean>(true);
+  const [outcome, setOutCome] = useState<string | null>(null);
+
+  const updateOutcome = () => {
+    if (chessRef.current.isCheckmate()) {
+      setOutCome(chessRef.current.turn() === "b" ? "white" : "black");
+    } else if (
+      chessRef.current.isStalemate() ||
+      chessRef.current.isThreefoldRepetition() ||
+      chessRef.current.isInsufficientMaterial()
+    ) {
+      setOutCome("draw");
+    }
+  };
+
   const moveHandler = (initial: string, final: string) => {
     const chess = chessRef.current;
     let moveOptions = {
@@ -20,7 +35,6 @@ const ChessComponent: React.FC = () => {
       promotion: promotionPiece,
     };
 
-    //If the move is valid, it will return the all relevant information and execute move. If not, it will be null.
     const move = chess.move(moveOptions);
     console.log(move);
 
@@ -30,7 +44,7 @@ const ChessComponent: React.FC = () => {
     promotionPiece = undefined;
     setLastMove(null);
 
-    /* update board */
+    updateOutcome();
     updateBoard();
   };
 
@@ -41,12 +55,14 @@ const ChessComponent: React.FC = () => {
   };
 
   const squareHandler = (move: string) => {
+    if (!gameActive) {
+      return;
+    }
     if (moveableSquares.includes(move)) {
       if (selectedSquare != null) {
         const isPromotion = requiresPromotion(move);
         if (isPromotion) {
           setLastMove(move);
-          console.log("lm: " + lastMove);
           setShowPromo(true);
         } else {
           moveHandler(selectedSquare, move);
@@ -72,7 +88,6 @@ const ChessComponent: React.FC = () => {
             })
             .map((move) => move.to);
           moveableSquares = moves;
-          console.log(moveableSquares);
           updateBoard();
         }
       }
@@ -167,6 +182,52 @@ const ChessComponent: React.FC = () => {
     setSquares(newSquares);
   };
 
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
+  const generateWinnerMessage = () => {
+    if (outcome === null || outcome === "") {
+      return <></>;
+    } else if (outcome === "black") {
+      return (
+        <div className="flex flex-col items-center">
+          <p className="text-center font-bold">Black wins by checkmate.</p>
+          <button
+            className="px-4 py-2 bg-render_gray text-white font-bold rounded shadow-sm hover:bg-dcyan"
+            onClick={handleRefresh}
+          >
+            Play Again
+          </button>
+        </div>
+      );
+    } else if (outcome === "white") {
+      return (
+        <div className="flex flex-col items-center">
+          <p className="text-center font-bold">White wins by checkmate.</p>
+          <button
+            className="px-4 py-2 bg-render_gray text-white font-bold rounded shadow-sm hover:bg-dcyan"
+            onClick={handleRefresh}
+          >
+            Play Again
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="flex flex-col items-center">
+          <p className="text-center font-bold">Game is a draw.</p>
+          <button
+            className="px-4 py-2 bg-render_gray text-white font-bold rounded shadow-sm hover:bg-dcyan"
+            onClick={handleRefresh}
+          >
+            Play Again
+          </button>
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="flex flex-col">
       {squares.map((row) => (
@@ -174,6 +235,7 @@ const ChessComponent: React.FC = () => {
           {row}
         </div>
       ))}
+      {generateWinnerMessage()}
       {showPromotionMenu()}
     </div>
   );

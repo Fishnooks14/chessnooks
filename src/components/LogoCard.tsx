@@ -9,9 +9,8 @@ const LogoCard = () => {
 
   return (
     <LazyMotion features={domAnimation}>
-      {" "}
       {/* New parent element */}
-      <div className="pt-10 pb-16 flex gap-1 items-center flex-start">
+      <div className="pt-10 pb-16 flex gap-1 items-center flex-start sm:flex-col sm:justify-center sm:items-center">
         <div
           tabIndex={0}
           ref={ref}
@@ -22,23 +21,20 @@ const LogoCard = () => {
             transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
           }}
         >
-          <p className="text-9xl font-bold text-logo_gray text-center">
+          <p className="font-bold text-logo_gray text-center sm:text-6xl lg:text-9xl">
             ChessNooks
           </p>
-          <div className="bg-dcyan bg-opacity-40 rounded-lg shadow-md px-8 py-10 overflow-hidden">
-            <p className="text-xl text-logo_gray mx-auto font-semibold text-center max-w-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <div className="bg-dcyan bg-opacity-40 rounded-lg shadow-md lg:px-8 lg:py-10 overflow-hidden sm:px-4 sm:py-6 pb-4">
+            <p className="lg:text-xl text-logo_gray mx-auto font-semibold text-center max-w-md sm:text-base">
+              The hub of everything Chess. With ChessNooks, explore all there is
+              to know about chess through our expansive list of rules and
+              strategies. Play games against your friends with our responsive
+              Chess program and against the computer for even more practice.
             </p>
-            <div className="flex justify-center items-center pt-12">
+            <div className="flex justify-center items-center pt-4">
               <a
                 href="/rules"
-                className="flex-grow-0 text-white text-xl text-center bg-blue-500 hover:bg-white hover:text-black rounded-lg p-2"
+                className="flex-grow-0 text-white text-xl text-center bg-blue-500 hover:bg-white hover:text-black rounded-lg p-2 sm:text-base"
               >
                 Get Started
               </a>
