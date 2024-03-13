@@ -81,8 +81,17 @@ const Strategy = () => {
     </div>
   );
 
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   const renderSidebar = () => (
-    <div className="fixed h-screen overflow-y-auto bg-render_gray w-64 shadow">
+    <div
+      className={`fixed h-screen overflow-y-auto bg-render_gray w-64 transition duration-300 ease-in-out ${
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
       {sections.map((section) => (
         <>
           <button
@@ -121,7 +130,11 @@ const Strategy = () => {
   );
 
   const renderContent = () => (
-    <div className="ml-64 px-4 py-4 bg-white">
+    <div
+      className={`min-h-screen px-4 py-4 bg-white transition duration-300 ease-in-out ${
+        isSidebarOpen ? "ml-64" : ""
+      }`}
+    >
       {sections.map((section) =>
         activeSection === section.title ? renderSection(section) : null
       )}
@@ -129,9 +142,24 @@ const Strategy = () => {
   );
 
   return (
-    <div className="flex">
-      {renderSidebar()}
-      {renderContent()}
+    <div className="flex h-screen">
+      <button
+        className="fixed bottom-1 left-1 p-4 focus:outline-none z-50 bg-dcyan rounded-md hover:bg-logo_gray"
+        //className="flex-grow-0 text-white text-xl text-center bg-blue-500 hover:bg-white hover:text-black rounded-lg p-2 sm:text-base"
+
+        onClick={toggleSidebar}
+      >
+        Toggle Sidebar
+      </button>
+      <div
+        className={`fixed h-screen overflow-y-auto bg-render_gray w-64 transition duration-300 ease-in-out ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        {renderSidebar()}
+      </div>
+      {/* Main Content */}
+      <div className="flex-grow">{renderContent()}</div>
     </div>
   );
 };
