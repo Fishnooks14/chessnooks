@@ -44,7 +44,7 @@ const sections: Section[] = [
                 <img src="assets/images/rookMove.png" alt="image showing that a rook can move as far as it wants along a straight line"/>
                 <p><br />The rook is significant in another way as well because along with the king, it can perform the move known as “castling.” This is when, given that the other pieces are out of the way and neither the rook nor king has moved yet, the king and rook can shift in one move. </p>
                 <p><br />A “long” castle, or a castle that takes place on the queen's side, shifts the king two spaces to the left and the rook three spaces to the right.</p>
-                <p><br />A “short” castle, or a castle on the king's side, shifts the king two spaces to the right and the rook two spaces to the left</p>
+                <p><br />A “short” castle, or a castle on the king's side, shifts the king two spaces to the right and the rook two spaces to the left.</p>
                 `,
             },
             {
@@ -62,18 +62,17 @@ const sections: Section[] = [
                 title: "Knight",
                 content: `<p>The knight is the chess piece that a beginner might have the most trouble with initially. This is because they move pretty irregularly compared to the other pieces. A good way to describe this is that the knight makes an “L” shape because it moves as follows: </p>
 
-                <p><br />Two spaces up or down and one space left or right.</p>
+                <p><br />Two spaces up or down and one space left or right</p>
                 <p>Or</p>
-                <p>Two spaces left or right and one space up or down</p>
+                <p>Two spaces left or right and one space up or down.</p>
                 <img src="assets/images/knightMove.png" alt="image showing that a knight can move in an "L" shape and can jump over pieces."/>
                 `,
             },
             {
                 title: "King",
                 content: `<p><br />The king is the most important piece in chess because placing it in checkmate wins you the game but it is at the same time the most immobile piece. It can only move one square in any direction</p>
-                <p><br />Also, the king along with the rook can perform a “castle.” (see rook section for more information)</p>
+                <p><br />Also, the king along with the rook can perform a “castle.” (see rook section for more information).</p>
                 <img src="assets/images/kingmove.png" alt="image showing that a king can move one space in any direction"/>
-
                 `,
             },
         ],
@@ -242,7 +241,6 @@ const Rules = () => {
             >
                 {renderSidebar()}
             </div>
-            {/* Main Content */}
             <div className="flex-grow">{renderContent()}</div>
         </div>
     );

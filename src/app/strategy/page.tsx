@@ -162,8 +162,6 @@ const Strategy = () => {
         <div className="flex h-screen">
             <button
                 className="fixed bottom-1 left-1 p-4 focus:outline-none z-50 bg-dcyan rounded-md hover:bg-logo_gray"
-                //className="flex-grow-0 text-white text-xl text-center bg-blue-500 hover:bg-white hover:text-black rounded-lg p-2 sm:text-base"
-
                 onClick={toggleSidebar}
             >
                 Toggle Sidebar
@@ -175,7 +173,6 @@ const Strategy = () => {
             >
                 {renderSidebar()}
             </div>
-            {/* Main Content */}
             <div className="flex-grow">{renderContent()}</div>
         </div>
     );
