@@ -31,14 +31,14 @@ export default function Home() {
                                         know the basics of chess, or nothing at
                                         all, a resource to dive deeper into the
                                         strategies, openings, and gambits
-                                        typical of more competetive chess.
+                                        typical of more competitive chess.
                                     </p>
 
                                     <p className="text-gray-700 pt-4">
                                         Please keep in mind the current
                                         incarnation of Chessnooks is simply a
                                         minimal viable product created for the
-                                        PA Media & Design Competetition 2024. We
+                                        PA Media & Design Competition 2024. We
                                         plan to continue expanding the website
                                         and its features in the future.
                                     </p>
