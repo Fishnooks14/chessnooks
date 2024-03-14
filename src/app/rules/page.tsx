@@ -174,7 +174,7 @@ const Rules = () => {
 
     const renderSidebar = () => (
         <div
-            className={`fixed h-screen overflow-y-auto bg-render_gray w-64 transition duration-300 ease-in-out ${
+            className={`fixed h-screen overflow-y-auto bg-render_gray_light w-64 transition duration-300 ease-in-out ${
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             }`}
         >
@@ -231,14 +231,12 @@ const Rules = () => {
         <div className="flex h-screen">
             <button
                 className="fixed bottom-1 left-1 p-4 focus:outline-none z-50 bg-dcyan rounded-md hover:bg-logo_gray"
-                //className="flex-grow-0 text-white text-xl text-center bg-blue-500 hover:bg-white hover:text-black rounded-lg p-2 sm:text-base"
-
                 onClick={toggleSidebar}
             >
                 Toggle Sidebar
             </button>
             <div
-                className={`fixed h-screen overflow-y-auto bg-render_gray w-64 transition duration-300 ease-in-out ${
+                className={`fixed h-screen overflow-y-auto bg-render_gray_light w-64 transition duration-300 ease-in-out ${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >

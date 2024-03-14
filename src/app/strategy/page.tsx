@@ -11,7 +11,7 @@ interface Section {
 const sections: Section[] = [
     {
         title: "Introduction",
-        content: `<br /> In Chess, strategy is everything. This begins from the very first move in every game so the opening you choose matters. Ultimately, this choice should be made after a lot of practice/research, and pick the one that is most successful and most comfortable. Generally, the goal of an opening should be to take control of the center as quickly as possible.
+        content: `<br /> In chess, strategy is everything. This begins from the very first move in every game so the opening you choose matters. Ultimately, this choice should be made after a lot of practice/research, and pick the one that is most successful and most comfortable. Generally, the goal of an opening should be to take control of the center as quickly as possible.
 <br /><br />Strategy is not just a one-way street because you have an opponent who is actively trying to beat you. You must always consider their moves in order to create a proper winning strategy.`,
     },
     {
@@ -21,7 +21,7 @@ const sections: Section[] = [
     },
     {
         title: "Open/ Closed Game",
-        content: `<br /> In Chess, depending on your style of play and especially based on the opening you choose, the game can quickly become either open or closed. A closed game means one in which most of the pawns are blocking one another and movement is very restricted whereas an open game offers a lot of movement. A closed game is a much more deliberate and slow game so choose according to your style!
+        content: `<br /> In chess, depending on your style of play and especially based on the opening you choose, the game can quickly become either open or closed. A closed game means one in which most of the pawns are blocking one another and movement is very restricted whereas an open game offers a lot of movement. A closed game is a much more deliberate and slow game so choose according to your style!
         <img src="assets/images/closedGame.png" alt="Closed game of chess. Pieces are unable to move very much.">Closed Game</img>
         <img src="assets/images/openGame.png" alt="Open game of chess. Pieces are free to move.">Open Game</img>
         `,
@@ -105,7 +105,7 @@ const Strategy = () => {
 
     const renderSidebar = () => (
         <div
-            className={`fixed h-screen overflow-y-auto bg-render_gray w-64 transition duration-300 ease-in-out ${
+            className={`fixed h-screen overflow-y-auto bg-render_gray_light w-64 transition duration-300 ease-in-out ${
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             }`}
         >
@@ -169,7 +169,7 @@ const Strategy = () => {
                 Toggle Sidebar
             </button>
             <div
-                className={`fixed h-screen overflow-y-auto bg-render_gray w-64 transition duration-300 ease-in-out ${
+                className={`fixed h-screen overflow-y-auto bg-render_gray_light w-64 transition duration-300 ease-in-out ${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >
