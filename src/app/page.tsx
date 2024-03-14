@@ -18,7 +18,7 @@ export default function Home() {
                             <div className="grid grid-cols-12 gap-8">
                                 <div className="col-span-6">
                                     <h2 className="text-3xl font-bold mb-4">
-                                        Header
+                                        Why Chessnooks?
                                     </h2>
                                     <p className="text-gray-700">
                                         The game of chess, especially
