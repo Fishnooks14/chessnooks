@@ -11,12 +11,12 @@ interface Section {
 const sections: Section[] = [
     {
         title: "Introduction",
-        content: `<br /> In chess, strategy is everything. This begins from the very first move in every game so the opening you choose matters. Ultimately, this choice should be made after a lot of practice/research, and pick the one that is most successful and most comfortable. Generally, the goal of an opening should be to take control of the center as quickly as possible.
+        content: `<br /> In chess, strategy is everything. This begins from the very first move in every game so the opening you choose matters. Ultimately, this choice should be made after a lot of practice/research, and pick the one with which you are most confident and comfortable. Generally, the goal of an opening should be to take control of the center as quickly as possible.
 <br /><br />Strategy is not just a one-way street because you have an opponent who is actively trying to beat you. You must always consider their moves in order to create a proper winning strategy.`,
     },
     {
         title: "Trading Pieces",
-        content: `<br /> Oftentimes, in games, the opportunity arises to trade a piece of equal material and it seems like there is no harm in doing so but that may not always be the case. While simplification of the board can be helpful, removing one of your pieces still is risky. A telltale sign of this is when one piece is in a significantly better position than the other or one person already has a good advantage. Be sure to keep this in mind. 
+        content: `<br /> Oftentimes, in games, the opportunity arises to trade a piece of equal material and it seems like there is no harm in doing so but that may not always be the case. While simplification of the board can be helpful, removing one of your pieces still is risky. A telltale sign of when you should trade is when one piece is in a significantly better position than the other or one person already has a good advantage. Be sure to keep this in mind. 
         <img src="assets/images/trade.png" alt="chess board containing only two kings. The bottom text reads Game is a draw" />`,
     },
     {

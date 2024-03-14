@@ -83,7 +83,7 @@ const sections: Section[] = [
         subsections: [
             {
                 title: "Starting",
-                content: `<p><br />Once the board is set up, white always makes the first move. The player may make any single move on their turn, and once their turn is complete, it becomes the other player's turn. There is no option for a player to pass a turn or not do anything. The game continues like this until one of the situations listed below is met.</p>`,
+                content: `<p><br />Once the board is set up, white always makes the first move. The player may make a single, legal move on their turn. Once their turn is complete, it becomes the other player's turn. There is no option for a player to pass a turn or not do anything. The game continues like this until one of the situations listed below is met.</p>`,
             },
             {
                 title: "Check",
@@ -94,7 +94,7 @@ const sections: Section[] = [
             },
             {
                 title: "Checkmate",
-                content: `<p><br /> Checkmate occurs when a player's king is under attack, but they have no valid moves to get their king out of danger. In this case, the player under attack loses to his/ her opponent.
+                content: `<p><br /> Checkmate occurs when a player's king is under attack, but they have no valid moves to get their king out of danger. In this case, the player under attack loses to his/her opponent.
                 </p>
                 <img src="assets/images/checkmate.png" alt="image a white king in checkmate. It has no valid moves to escape. The bottom text reads Black wins by checkmate."/>
                 `,

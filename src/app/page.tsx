@@ -25,13 +25,14 @@ export default function Home() {
                                         considering its rapidly growing
                                         popularity among internet users, is a
                                         worldwide phenomenon that captivates
-                                        millions upon millions of players. Our
-                                        purpose with this project is to provide
-                                        a platform on which users, who may only
-                                        know the basics of chess, or nothing at
-                                        all, a resource to dive deeper into the
-                                        strategies, openings, and gambits
-                                        typical of more competitive chess.
+                                        millions upon millions of players
+                                        worldwide. Our purpose with this project
+                                        is to provide a platform on which users,
+                                        who may only know the basics of chess,
+                                        or nothing at all, a resource to dive
+                                        deeper into the strategies, openings,
+                                        and gambits typical of more competitive
+                                        chess.
                                     </p>
 
                                     <p className="text-gray-700 pt-4">
