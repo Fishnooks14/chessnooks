@@ -40,7 +40,7 @@ const About = () => {
                 </div>
             </div>
             <h1 className="text-3xl font-bold text-center mb-8">Sitemap</h1>
-            <div className="flex items-center">
+            <div className="flex items-center justify-center">
                 <img
                     className="rounded-lg shadow-md mx-auto md:mx-0"
                     src="/assets/images/sitemap.png"
