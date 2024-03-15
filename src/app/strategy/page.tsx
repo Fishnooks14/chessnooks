@@ -51,7 +51,7 @@ The point of this system is to consistently create a very similar overall board 
     },
     {
         title: "End Games",
-        content: `<br />When the amount of pieces on the board becomes very few, you have reached the End game. There are millions of ways the board could be set up during this stage but usually, they follow similar patterns. Make sure to practice ways to checkmate the opponent with rooks, queens, and even knights, bishops, and pawns. The most paramount thing to keep in mind is to prevent a stalemate where you restrict all of their moves AND they are not in check. If you have pawns in the end game, use the potential promotion of them as a threat.
+        content: `<br />When the number of pieces on the board becomes very few, you have reached the end game. There are millions of ways the board could be set up during this stage but usually, they follow similar patterns. Make sure to practice ways to checkmate the opponent with rooks, queens, and even knights, bishops, and pawns. The most paramount thing to keep in mind is to prevent a stalemate where you restrict all of their moves AND they are not in check. If you have pawns in the end game, use their potential promotion of them as a threat.
         <img src="assets/images/endGame.png" alt="End game board of chess in which both sides have 3 pawns, black has a rook and a bishop, and white has two rooks.">Example of an end game</img>`,
     },
 ];
