@@ -54,9 +54,11 @@ const BotChessComponent: React.FC = () => {
     updateOutcome();
     updateBoard();
 
-    doNextBotMove();
-    updateOutcome();
-    updateBoard();
+    setTimeout(() => {
+      doNextBotMove();
+      updateOutcome();
+      updateBoard();
+    }, 0);
   };
 
   const promotionHandler = (piece: string) => {
