@@ -47,10 +47,10 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^20
+    specifier: ^20.11.20
     version: 20.11.20
   '@types/react':
-    specifier: ^18
+    specifier: ^18.2.59
     version: 18.2.59
   '@types/react-dom':
     specifier: ^18
@@ -71,7 +71,7 @@ devDependencies:
     specifier: ^3.3.0
     version: 3.4.1
   typescript:
-    specifier: ^5
+    specifier: ^5.3.3
     version: 5.3.3
 
 packages:

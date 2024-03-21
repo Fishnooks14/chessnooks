@@ -3,6 +3,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Chess, Square } from "chess.js";
 
+interface Arrow {
+  start: { x: number; y: number }
+  end: { x: number; y: number }
+}
+
 const ChessComponent: React.FC = () => {
   const chessRef = useRef(new Chess());
   let selectedSquare: string | null = null;
@@ -12,8 +17,42 @@ const ChessComponent: React.FC = () => {
   const [showPromo, setShowPromo] = useState<boolean>(false);
   const [lastMove, setLastMove] = useState<string | null>(null);
 
-  const [gameActive, setGameActive] = useState<boolean>(true);
-  const [outcome, setOutCome] = useState<string | null>(null);
+  const [arrows, setArrows] = useState<Arrow[]>([]);
+  const [startPosition, setStartPosition] = useState<{ x: number; y: number } | null>(null);
+  const [endPosition, setEndPosition] = useState<{ x: number; y: number } | null>(null);
+
+  const [gameActive, setGameActive] = useState<boolean>(true)
+  const [outcome, setOutCome] = useState<string | null>(null)
+
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    setStartPosition({ x: event.clientX, y: event.clientY })
+  };
+
+  const handleMouseMove = (event: MouseEvent) => {
+    if (startPosition) {
+      setEndPosition({ x: event.clientX, y: event.clientY })
+    }
+  };
+
+  const handleMouseUp = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.button == 0) {
+      setArrows([])
+    }
+    if (startPosition && endPosition && event.button == 2) {
+      const newArrow = { start: startPosition, end: endPosition }
+      setArrows([...arrows, newArrow])
+    }
+    setStartPosition(null)
+    setEndPosition(null)
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [startPosition, arrows])
 
   const updateOutcome = () => {
     if (chessRef.current.isCheckmate()) {
@@ -229,11 +268,44 @@ const ChessComponent: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}
+    onContextMenu={(e) => e.preventDefault()} className="flex flex-col">
       {squares.map((row) => (
         <div key={row[0].key} style={{ display: "flex" }}>
           {row}
         </div>
+      ))}
+      {arrows.map((arrow, index) => (
+        <svg
+          key={index}
+          style={{
+            position: 'absolute',
+            top: 0,left: 0,width: '100%',height: '100%',
+            pointerEvents: 'none',
+          }}
+        >
+          <defs>
+            <marker
+              id={`arrow-head-${index}`}
+              viewBox="0 0 10 10"refX="5"refY="5"markerWidth="11"
+              markerHeight="6"
+              orient="auto"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#000" />
+            </marker>
+          </defs>
+          <line
+            x1={arrow.start.x}
+            y1={arrow.start.y}
+            x2={arrow.end.x}
+            y2={arrow.end.y}
+            style={{
+              stroke: 'orange',
+              strokeWidth: 7,
+              markerEnd: `url(#arrow-head-${index})`,
+            }}
+          />
+        </svg>
       ))}
       {generateWinnerMessage()}
       {showPromotionMenu()}
