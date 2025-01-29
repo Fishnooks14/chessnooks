@@ -17,7 +17,7 @@
     "babylonjs": "^6.46.1",
     "chess.js": "^1.0.0-beta.8",
     "framer-motion": "^11.0.6",
-    "next": "^14.2.5",
+    "next": "^14.2.21",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
